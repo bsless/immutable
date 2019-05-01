@@ -8,7 +8,6 @@ func (f AFn) Invoke(args ...Any) Any {
 
 func (f AFn) Run() {
 	f.Invoke()
-	return
 }
 
 func (f AFn) Call() Any {
