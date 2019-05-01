@@ -8,6 +8,6 @@ type ISeq interface {
 	First() Any
 	Next() ISeq
 	More() ISeq
-	Cons(o Any) *ISeq
+	Cons(o Any) ISeq
 }
 

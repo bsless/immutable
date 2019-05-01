@@ -51,20 +51,20 @@ func (a ASeq) More() ISeq {
 	return s
 }
 
-func (a ASeq) Cons(o Any) *ISeq {
+func (a ASeq) Cons(o Any) ISeq {
 	cons := MakeConsCell(o, a)
 	return cons
 }
 
 type ConsCell struct {
 	ASeq
-	First Any
-	More ISeq
+	first Any
+	more ISeq
 }
 
 func MakeConsCell(o Any, more ISeq) *ConsCell {
 	cell := new(ConsCell)
-	cell.First = o
-	cell.More = more
+	cell.first = o
+	cell.more = more
 	return cell
 }
