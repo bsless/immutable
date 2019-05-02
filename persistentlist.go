@@ -26,12 +26,12 @@ func (l EmptyList) First() Any {
 	return nil
 }
 
-func (l EmptyList) next() ISeq {
+func (l EmptyList) Next() ISeq {
 	return nil
 }
 
 func (l EmptyList) More() ISeq {
-	return l
+	return l.ISeq.More()
 }
 
 func (l EmptyList) Cons(o Any) *PersistentList {
@@ -69,8 +69,7 @@ func MakePersistentList(meta IPersistentMap, first Any, rest IPersistentList, co
 }
 
 func (l PersistentList) Cons(o Any) *PersistentList {
-	var ilist IPersistentList
-	ilist = &l
+	ilist := l.IPersistentList
 	return MakePersistentList(l.Meta(), o, ilist, l.count + 1)
 }
 
