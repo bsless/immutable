@@ -44,7 +44,9 @@ func MakeEmptyList() *PersistentList {
 
 // TODO change meta type to map
 func MakeEmptyListWithMeta(meta IPersistentMap) *PersistentList {
-	return &PersistentList{meta: meta}
+	pl := &PersistentList{}
+	pl.meta = meta
+	return pl
 }
 
 type PersistentList struct {
@@ -57,12 +59,13 @@ type PersistentList struct {
 }
 
 func MakePersistentList(meta IPersistentMap, first Any, rest IPersistentList, count int) *PersistentList {
-	return &PersistentList{
+	pl := &PersistentList{
 		first: first,
 		rest: rest,
-		meta: meta,
 		count: count,
 	}
+	pl.meta = meta
+	return pl
 }
 
 func (l PersistentList) Cons(o Any) *PersistentList {
