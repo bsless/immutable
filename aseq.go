@@ -6,10 +6,12 @@ type ASeq struct {
 	ISeq
 	Sequential
 	IHashEq
+	Obj
 	hash int
 	// hasheq int
 }
 
+// TODO implement
 func (a ASeq) String() {}
 
 func (a ASeq) HashCode() int {
@@ -83,19 +85,6 @@ func (a ASeq) More() ISeq {
 }
 
 func (a ASeq) Cons(o Any) ISeq {
-	cons := MakeConsCell(o, a)
+	cons := MakeCons(o, a)
 	return cons
-}
-
-type ConsCell struct {
-	ASeq
-	first Any
-	more ISeq
-}
-
-func MakeConsCell(o Any, more ISeq) *ConsCell {
-	cell := new(ConsCell)
-	cell.first = o
-	cell.more = more
-	return cell
 }
