@@ -6,5 +6,4 @@ type Entry interface {
 	SetValue(v interface{}) interface{}
 	Equals(o interface{}) bool
 	HashCode() int
-
 }

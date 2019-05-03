@@ -5,5 +5,3 @@ type IPersistentStack interface {
 	Peek() Any
 	Pop() IPersistentStack
 }
-
-

@@ -10,4 +10,3 @@ type ISeq interface {
 	More() ISeq
 	Cons(o Any) ISeq
 }
-

@@ -3,7 +3,7 @@ package types
 type Cons struct {
 	ASeq
 	first Any
-	more ISeq
+	more  ISeq
 }
 
 func MakeCons(o Any, more ISeq) *Cons {
@@ -31,6 +31,6 @@ func (c Cons) Count() int {
 }
 
 func (c Cons) WithMeta(meta IPersistentMap) *Cons {
-// TODO implement me
+	// TODO implement me
 	return MakeCons(c.first, c.more)
 }

@@ -1,6 +1,6 @@
 package types
 
-type AFn struct {}
+type AFn struct{}
 
 func (f AFn) Invoke(args ...Any) Any {
 	panic("ArityException")

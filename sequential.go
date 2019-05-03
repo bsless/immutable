@@ -1,3 +1,3 @@
 package types
 
-type Sequential interface {}
+type Sequential interface{}

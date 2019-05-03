@@ -4,4 +4,3 @@ type IPersistentList interface {
 	Sequential
 	IPersistentStack
 }
-

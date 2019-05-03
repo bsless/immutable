@@ -23,7 +23,7 @@ func (a ASeq) HashCode() int {
 			// if s.First() != nil {
 			// 	rest = s.First().HashCode()
 			// }
-			hash = 31 * hash + rest
+			hash = 31*hash + rest
 		}
 		a.hash = hash
 	}
@@ -54,7 +54,7 @@ func (a ASeq) Equals(obj Any) bool {
 
 func (a ASeq) Count() int {
 	i := 1
-	for s := a.Next(); s!= nil; s, i = s.Next(), i + 1 {
+	for s := a.Next(); s != nil; s, i = s.Next(), i+1 {
 		var u interface{} = s
 		_, ok := u.(Counted)
 		if ok {
