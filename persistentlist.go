@@ -1,81 +1,68 @@
 package types
 
-type EmptyList struct {
-	IPersistentList
-	ISeq
-	Counted
-	IHashEq
-	Obj
-	// hasheq int // TODO: implement
-}
-
-func (l EmptyList) HashCode() int {
-	return 1
-}
-
-func (l EmptyList) HashEq() int {
-	// TODO implement
-	return 1
-}
-
-func (l EmptyList) String() string {
-	return "()"
-}
-
-func (l EmptyList) First() Any {
-	return nil
-}
-
-func (l EmptyList) Next() ISeq {
-	return nil
-}
-
-func (l EmptyList) More() ISeq {
-	return l.ISeq.More()
-}
-
-func (l EmptyList) Cons(o Any) *PersistentList {
-	return MakePersistentList(l.Meta(), o, nil, 1)
-}
-
-func MakeEmptyList() *PersistentList {
-	return &PersistentList{}
-}
-
-func MakeEmptyListWithMeta(meta IPersistentMap) *PersistentList {
-	pl := &PersistentList{}
-	pl.meta = meta
-	return pl
-}
-
 type PersistentList struct {
+	// interfaces
 	IPersistentList
 	IReduce
+	// inheritence
 	ASeq
+	// members
 	first Any
 	rest IPersistentList
 	count int
 }
 
-func MakePersistentList(meta IPersistentMap, first Any, rest IPersistentList, count int) *PersistentList {
+func (l PersistentList) First() Any {
+	return l.first
+}
+
+func (l PersistentList) Next() ISeq {
+	if count == 1 {
+		return nil
+	}
+	return rest
+}
+
+func (l PersistentList) Peek() Any {
+	return first
+}
+
+func (l PersistentList) Pop() IPersistentList {
+	if rest == nil {
+		return EMPTY.WithMeta(l.meta)
+	}
+	return l.rest
+}
+
+func (l PersistentList) Count() int {
+	return l.count
+}
+
+func (l PersistentList) Empty() IPersistentCollection {
+	return EMPTY.WithMeta(l.meta)
+}
+
+func NewPersistentList(meta IPersistentMap, first Any, rest IPersistentList, count int) *PersistentList {
 	pl := &PersistentList{
 		first: first,
 		rest:  rest,
 		count: count,
 	}
 	pl.meta = meta
+	pl.ASeq.ISeq = pl
+	pl.ASeq.IObj = pl
+	pl.ASeq.IHashEq = pl
 	return pl
 }
 
 func (l PersistentList) Cons(o Any) *PersistentList {
-	ilist := l.IPersistentList
-	return MakePersistentList(l.Meta(), o, ilist, l.count + 1)
+	return NewPersistentList(l.Meta(), o, l, l.count + 1)
 }
 
-func Create(objs ...Any) *PersistentList {
-	ret := MakeEmptyList()
-	for obj := range objs {
-		ret = ret.Cons(obj)
-	}
-	return ret
-}
+// func Create(objs ...Any) IPersistentList {
+// 	ret := EMPTY
+// 	for obj := range objs {
+// 		ret = ret.Cons(obj)
+// 	}
+// 	return ret
+// }
