@@ -6,11 +6,11 @@ type Obj struct {
 	meta IPersistentMap
 }
 
-func MakeObj() *Obj {
+func NewObj() *Obj {
 	return &Obj{meta: nil}
 }
 
-func MakeObjWithMeta(meta IPersistentMap) *Obj {
+func NewObjWithMeta(meta IPersistentMap) *Obj {
 	return &Obj{meta: meta}
 }
 

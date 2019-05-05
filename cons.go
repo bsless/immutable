@@ -6,7 +6,7 @@ type Cons struct {
 	more  ISeq
 }
 
-func MakeCons(o Any, more ISeq) *Cons {
+func NewCons(o Any, more ISeq) *Cons {
 	cell := new(Cons)
 	cell.first = o
 	cell.more = more
@@ -32,5 +32,5 @@ func (c Cons) Count() int {
 
 func (c Cons) WithMeta(meta IPersistentMap) *Cons {
 	// TODO implement me
-	return MakeCons(c.first, c.more)
+	return NewCons(c.first, c.more)
 }

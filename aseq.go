@@ -68,23 +68,23 @@ func (a ASeq) Seq() ISeq {
 	return a
 }
 
-func (a ASeq) First() Any {
-	return a.Seq().First()
-}
-
-func (a ASeq) Next() ISeq {
-	return a.Seq().Next()
+func (a ASeq) Cons(o Any) ISeq {
+	cons := NewCons(o, a)
+	return cons
 }
 
 func (a ASeq) More() ISeq {
 	s := a.Next()
 	if s == nil {
-		return nil
+		return nil // TODO empty list
 	}
 	return s
 }
 
-func (a ASeq) Cons(o Any) ISeq {
-	cons := MakeCons(o, a)
-	return cons
-}
+// func (a ASeq) First() Any {
+// 	return a.Seq().First()
+// }
+
+// func (a ASeq) Next() ISeq {
+// 	return a.Seq().Next()
+// }
