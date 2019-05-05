@@ -31,9 +31,7 @@ func (a ASeq) HashCode() int {
 }
 
 func (a ASeq) Empty() IPersistentCollection {
-	// TODO implement me
-	// return PersistentList.Empty
-	return nil
+	return EMPTY
 }
 
 func (a ASeq) Equiv(obj Any) bool {

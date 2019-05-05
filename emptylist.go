@@ -40,6 +40,27 @@ func (l EmptyList) Cons(o Any) *PersistentList {
 	return NewPersistentList(l.Meta(), o, nil, 1)
 }
 
+func (l EmptyList) Count() int {
+	return 0
+}
+
+func (l EmptyList) Empty() IPersistentCollection {
+	return l
+}
+
+// TODO Implement
+func (l EmptyList) Equals(o Any) bool {
+	return false
+}
+
+func (l EmptyList) Equiv(o Any) bool {
+	return l.Equals(o)
+}
+
+func (l EmptyList) Seq() ISeq {
+	return nil
+}
+
 func (l EmptyList) WithMeta(meta IPersistentMap) *EmptyList {
 	if meta != l.Meta() {
 		return NewEmptyListWithMeta(meta)
@@ -50,6 +71,9 @@ func (l EmptyList) WithMeta(meta IPersistentMap) *EmptyList {
 func NewEmptyList() *EmptyList {
 	pl := &EmptyList{}
 	pl.Obj.IObj = pl
+	pl.ISeq = pl
+	pl.IPersistentList = pl
+	pl.IHashEq = pl
 	return pl
 }
 
